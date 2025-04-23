@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "es2022",
+		"allowJs": true,
+		"moduleDetection": "force",
+		"moduleResolution": "bundler",
+		"isolatedModules": true,
+		"verbatimModuleSyntax": true,
+
+		"strict": true,
+		"strictNullChecks": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noImplicitAny": true,
+
+		"module": "ESNext",
+		"declaration": true
+	},
+
+	"exclude": ["dist", "node_modules"]
+}
