@@ -1,29 +1,29 @@
 {
-	"compilerOptions": {
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"target": "es2022",
-		"allowJs": true,
-		"moduleDetection": "force",
-		"moduleResolution": "bundler",
-		"isolatedModules": true,
-		"verbatimModuleSyntax": true,
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
 
-		"strict": true,
-		"strictNullChecks": true,
-		"noUncheckedIndexedAccess": true,
-		"noImplicitOverride": true,
-		"noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noImplicitAny": true,
 
-		"module": "ESNext",
-		"declaration": true,
+    "module": "ESNext",
+    "declaration": true,
 
-		"baseUrl": ".",
-		"paths": {
-			"~/src/*": ["./src/*"],
-			"~/entries/*": ["./entries/*"]
-		}
-	},
+    "baseUrl": ".",
+    "paths": {
+      "~/src/*": ["./src/*"],
+      "~/entries/*": ["./entries/*"]
+    }
+  },
 
-	"exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules"]
 }

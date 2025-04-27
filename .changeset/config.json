@@ -1,5 +1,5 @@
 {
-	"access": "public",
-	"commit": true,
-	"baseBranch": "main"
+  "access": "public",
+  "commit": true,
+  "baseBranch": "main"
 }
