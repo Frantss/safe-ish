@@ -1,8 +1,8 @@
 import { assertType, expect, it, test } from 'vitest';
-import { safe_defineError } from '~/entries/prefixed';
+import { safeish_defineError } from '~/entries/prefixed';
 
 it('should return expected types when message lacks a context argument', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: () => 'message',
   });
@@ -16,7 +16,7 @@ it('should return expected types when message lacks a context argument', () => {
 });
 
 it('should return expected types when message has a context argument', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: (context: { message: string }) => context.message,
   });
@@ -30,7 +30,7 @@ it('should return expected types when message has a context argument', () => {
 });
 
 test('defined error should return expected error', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: () => 'message',
   });
@@ -45,7 +45,7 @@ test('defined error should return expected error', () => {
 });
 
 test('defined error should return expected error with context', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: (context: { message: string }) => context.message,
   });

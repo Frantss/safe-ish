@@ -1,4 +1,4 @@
-import type { SafeError } from '~/src/types';
+import type { SafeishError } from '~/src/types';
 
 export const error = <Code extends string, Context>(
   code: Code,
@@ -12,5 +12,5 @@ export const error = <Code extends string, Context>(
       context,
       message,
     },
-  } satisfies SafeError<Code, Context> as SafeError<Code, Context>;
+  } satisfies SafeishError<Code, Context> as SafeishError<Code, Context>;
 };

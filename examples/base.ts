@@ -1,44 +1,9 @@
-# Safe-ish
-
-Safe-ish error handling.
-
-Safe-ish is a library that provides a simple and type-safe way to handle errors in TypeScript by avoiding throwing exceptions and defining custom defined errors structures.
-
-## Installation
-
-With npm:
-
-```bash
-npm install safeish
-```
-
-With any other package manager:
-
-```bash
-# pnpm
-pnpm add safeish
-
-# yarn
-yarn add safeish
-
-# bun
-bun add safeish
-
-# jsr
-npx jsr add @frantss/safeish
-```
-
-## Usage
-
-```typescript
 import { safeish_defineError, safeish_result } from '~/entries/prefixed';
 import { safeish } from '~/src/safeish';
 
-// define your errors
 const errors = {
   greater_than_50: safeish_defineError({
     code: 'greater_than_50',
-    // you can specified a required context for the error, this can be used for building the message or handling the error
     message: (context: number) => `Value ${context} is greater than 50`,
   }),
 
@@ -87,38 +52,3 @@ if (result.ok) {
     result.error.context; // unknown
   }
 }
-```
-
-### With ts-pattern
-
-Safe-ish works great when paired with [ts-pattern](https://github.com/gvergnaud/ts-pattern), a pattern matching library for TypeScript.
-It allows you to easily ensure you are handling all possible errors exhaustively.
-
-```typescript
-const result = someFunctionThatMightFail();
-
-match(result)
-  .with({ ok: true }, (data) => {
-    // handle success
-  })
-  .with({ error: { code: 'greater_than_50' } }, (error) => {
-    // handle error
-    error.error.context; // number
-  })
-  .with({ error: { code: 'greater_than_80' } }, (error) => {
-    // handle error
-    error.error.context; // undefined
-  })
-  .with({ error: { code: '~unhandled' } }, (error) => {
-    // handle any unhandled error
-    error.error.context; // unknown
-  })
-  .exhaustive();
-```
-
-## Inspirations
-
-This library was inspired by the following projects:
-
-- [neverthrow](https://github.com/supermacro/neverthrow)
-- [ts-results](https://github.com/vultix/ts-results)

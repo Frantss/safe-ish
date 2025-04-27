@@ -1,19 +1,23 @@
 import { error } from '~/src/error';
-import type { SafeError, SafeErrorDefinition, SafeResult } from '~/src/types';
+import type {
+  SafeishError,
+  SafeishErrorDefinition,
+  SafeishResult,
+} from '~/src/types';
 
 export const unhandledCode = '~unhandled' as const;
-export type SafeUnhandledCode = typeof unhandledCode;
+export type SafeishUnhandledCode = typeof unhandledCode;
 
-export const safe = <
+export const safeish = <
   Input extends unknown[],
   Output extends
-    | SafeResult<unknown>
-    | SafeError<string, unknown>
-    | SafeError<SafeUnhandledCode, unknown>,
-  Unhandled extends SafeErrorDefinition<string, unknown> = SafeErrorDefinition<
-    SafeUnhandledCode,
+    | SafeishResult<unknown>
+    | SafeishError<string, unknown>
+    | SafeishError<SafeishUnhandledCode, unknown>,
+  Unhandled extends SafeishErrorDefinition<
+    string,
     unknown
-  >,
+  > = SafeishErrorDefinition<SafeishUnhandledCode, unknown>,
 >(
   handler: (...args: Input) => Output,
   unhandled?: Unhandled,

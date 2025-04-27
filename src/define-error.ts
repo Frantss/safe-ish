@@ -1,5 +1,5 @@
 import { error } from '~/src/error';
-import type { SafeErrorDefinition } from '~/src/types';
+import type { SafeishErrorDefinition } from '~/src/types';
 
 export const defineError = <const Code extends string, Context = undefined>({
   code,
@@ -13,5 +13,5 @@ export const defineError = <const Code extends string, Context = undefined>({
   builder.message = message;
   builder.$context = {} as unknown as Context;
 
-  return builder as unknown as SafeErrorDefinition<Code, Context>;
+  return builder as unknown as SafeishErrorDefinition<Code, Context>;
 };

@@ -1,2 +1,6 @@
+# miscellaneous
 node_modules
 dist
+
+# ide
+.vscode

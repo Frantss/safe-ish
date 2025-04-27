@@ -1,23 +1,27 @@
 import { assert, assertType, expect, it } from 'vitest';
-import { safe_defineError, safe_result, safe_safe } from '~/entries/prefixed';
-import type { SafeResult } from '~/src/types';
+import {
+  safeish_defineError,
+  safeish_result,
+  safeish_safe,
+} from '~/entries/prefixed';
+import type { SafeishResult } from '~/src/types';
 
 it('should return a result when no error is thrown or returned', () => {
-  const caller = safe_safe((a: number, b: number) => {
-    return safe_result(a + b);
+  const caller = safeish_safe((a: number, b: number) => {
+    return safeish_result(a + b);
   });
 
   const result = caller(1, 2);
 
   assert(!!result.ok);
 
-  assertType<SafeResult<number>>(result);
+  assertType<SafeishResult<number>>(result);
 
   expect(result.data).toBe(3);
 });
 
 it('should return an error when an unhandled error is thrown', () => {
-  const caller = safe_safe((a: number, b: number) => {
+  const caller = safeish_safe((a: number, b: number) => {
     throw 'failed';
   });
 
@@ -33,11 +37,11 @@ it('should return an error when an unhandled error is thrown', () => {
 });
 
 it('should return a custom error when it is returned', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: (context: { message: string }) => context.message,
   });
-  const caller = safe_safe((a: number, b: number) => {
+  const caller = safeish_safe((a: number, b: number) => {
     return error({ message: 'message' });
   });
 
@@ -56,11 +60,11 @@ it('should return a custom error when it is returned', () => {
 });
 
 it('returns custom error as unhandled if passed in second argument', () => {
-  const error = safe_defineError({
+  const error = safeish_defineError({
     code: 'code',
     message: (context: unknown) => `${context}`,
   });
-  const caller = safe_safe((a: number, b: number) => {
+  const caller = safeish_safe((a: number, b: number) => {
     throw 'failed';
   }, error);
 
