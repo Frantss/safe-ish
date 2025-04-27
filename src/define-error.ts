@@ -1,5 +1,5 @@
-import { error } from "./error";
-import type { SafeErrorDefinition } from "./types";
+import { error } from "~/src/error";
+import type { SafeErrorDefinition } from "~/src/types";
 
 export const defineError = <const Code extends string, Context = undefined>({
 	code,

@@ -33,7 +33,7 @@
 		"./package.json": "./package.json"
 	},
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown",
 		"check-exports": "attw --pack . --profile node16",
 		"lint": "biome check",
 		"lint:fix": "biome check --write",
@@ -55,7 +55,7 @@
 		"@biomejs/biome": "1.9.4",
 		"@changesets/cli": "^2.29.2",
 		"@types/bun": "latest",
-		"tsup": "^8.4.0",
+		"tsdown": "^0.9.9",
 		"typescript": "^5.8.3"
 	}
 }

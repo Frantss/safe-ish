@@ -1,4 +1,4 @@
-import type { SafeOk } from "./types";
+import type { SafeOk } from "~/src/types";
 
 export const result = <Data>(data: Data) => {
 	return {

@@ -16,7 +16,13 @@
 		"noImplicitAny": true,
 
 		"module": "ESNext",
-		"declaration": true
+		"declaration": true,
+
+		"baseUrl": ".",
+		"paths": {
+			"~/src/*": ["./src/*"],
+			"~/entries/*": ["./entries/*"]
+		}
 	},
 
 	"exclude": ["dist", "node_modules"]

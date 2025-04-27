@@ -1,5 +1,5 @@
-import { error } from "./error";
-import type { SafeError, SafeErrorDefinition, SafeOk } from "./types";
+import { error } from "~/src/error";
+import type { SafeError, SafeErrorDefinition, SafeOk } from "~/src/types";
 
 const safe_unhandledCode = "~unhandled" as const;
 type Safe_UnhandledCode = typeof safe_unhandledCode;
