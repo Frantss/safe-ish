@@ -39,7 +39,9 @@
 		"lint:fix": "biome check --write",
 		"prepublishOnly": "bun run lint && bun run build && bun run check-exports",
 		"version": "changeset",
-		"release": "changeset version && changeset publish"
+		"release": "changeset version && changeset publish",
+		"test": "vitest",
+		"test:dev": "vitest --watch"
 	},
 	"bugs": {
 		"url": "https://github.com/Frantss/safe-ish/issues"
@@ -56,6 +58,8 @@
 		"@changesets/cli": "^2.29.2",
 		"@types/bun": "latest",
 		"tsdown": "^0.9.9",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "^3.1.2"
 	}
 }

@@ -1,4 +1,4 @@
-export type SafeOk<Data> = {
+export type SafeResult<Data> = {
 	ok: true;
 	data: Data;
 };

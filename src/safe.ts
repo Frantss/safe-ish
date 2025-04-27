@@ -1,18 +1,19 @@
 import { error } from "~/src/error";
-import type { SafeError, SafeErrorDefinition, SafeOk } from "~/src/types";
+import type { SafeError, SafeErrorDefinition, SafeResult } from "~/src/types";
 
-const safe_unhandledCode = "~unhandled" as const;
-type Safe_UnhandledCode = typeof safe_unhandledCode;
+export const unhandledCode = "~unhandled" as const;
+export type SafeUnhandledCode = typeof unhandledCode;
 
 export const safe = <
 	Input extends unknown[],
 	Output extends
-		| SafeOk<unknown>
+		| SafeResult<unknown>
 		| SafeError<string, unknown>
-		| SafeError<Safe_UnhandledCode, unknown>,
+		| SafeError<SafeUnhandledCode, unknown>,
+	Unhandled extends SafeErrorDefinition<string, unknown> = SafeErrorDefinition<SafeUnhandledCode, unknown>,
 >(
 	handler: (...args: Input) => Output,
-	unhandled?: SafeErrorDefinition<Safe_UnhandledCode, unknown>,
+	unhandled?: Unhandled,
 ) => {
 	return (...args: Input) => {
 		try {
@@ -20,8 +21,8 @@ export const safe = <
 		} catch (e) {
 			return (
 				unhandled?.(e) ??
-				error(safe_unhandledCode, e, "An unhandled error occurred")
-			);
+				error(unhandledCode, e, "An unhandled error occurred")
+			) as unknown as ReturnType<Unhandled>;
 		}
 	};
 };
