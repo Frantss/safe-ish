@@ -1,5 +1,0 @@
----
-"safeish": minor
----
-
-First release 🎉 !!
