@@ -1,0 +1,10 @@
+{
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
+  "name": "@frantss/safeish",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./entries/index.ts",
+    "./prefixed": "./entries/prefixed.ts"
+  }
+}
