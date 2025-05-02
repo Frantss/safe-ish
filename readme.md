@@ -1,6 +1,16 @@
-# Safe-ish
+<h1 align="center">Safe-ish</h1>
 
-Safe-ish error handling.
+<div align="center">
+  <a href="https://bundlejs.com/?q=safeish" >
+    <img src="https://deno.bundlejs.com/badge?q=safeish@0.1.0" />
+  </a>
+
+  <a href="https://github.com/frantss/safeish/blob/main/LICENSE">
+    <img alt="MIT License" src="https://img.shields.io/github/license/frantss/safeish?logo=open-source-initiative" />
+  </a>
+</div>
+
+<h2>Safe-ish error handling.</h2>
 
 Safe-ish is a library that provides a simple and type-safe way to handle errors in TypeScript by avoiding throwing exceptions and defining custom defined errors structures.
 
