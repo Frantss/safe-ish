@@ -12,7 +12,15 @@
 
 <h2>Safe-ish error handling.</h2>
 
-Safe-ish is a library that provides a simple and type-safe way to handle errors in TypeScript by avoiding throwing exceptions and defining custom defined errors structures.
+A lightweight TypeScript library for robust error handling using a Result-like pattern. It helps you safely execute functions, catch exceptions gracefully, and work with predictable success (`SafeishResult`) and error (`SafeishError`) types, avoiding runtime crashes from unhandled exceptions.
+
+## Why `safeish`?
+
+-   **Prevent Crashes:** Wrap functions with `safeish` to automatically catch thrown exceptions and convert them into structured `SafeishError` objects.
+-   **Explicit Error Handling:** Functions return either a success (`SafeishResult`) or an error (`SafeishError`), making potential failure points explicit in the type system.
+-   **Structured Errors:** Define consistent error types with unique codes, context-aware messages, and optional side effects (like logging) using `defineError`.
+-   **Reduce Boilerplate:** Avoid repetitive `try...catch` blocks for expected and unexpected errors.
+
 
 ## Installation
 
@@ -41,8 +49,7 @@ npx jsr add @frantss/safeish
 ## Usage
 
 ```typescript
-import { safeish_defineError, safeish_result } from '~/entries/prefixed';
-import { safeish } from '~/src/safeish';
+import { safeish, safeish_defineError, safeish_result } from 'safeish/prefixed';
 
 // define your errors
 const errors = {
@@ -135,6 +142,25 @@ match(result)
   })
   .exhaustive();
 ```
+
+## API
+
+### `defineError`
+
+Defines a reusable blueprint for a specific error type, including its unique code, context-aware message generation function, and optional side effect function (e.g., for logging).
+
+### `result`
+
+Creates a `SafeishResult` object representing a successful outcome ("Ok"), wrapping the success payload.
+
+### `error`
+
+Creates an ad-hoc `SafeishError` object representing a failure ("Err"). Prefer using the factory function returned by `defineError` for consistency and to automatically trigger side effects.
+
+### `safeish`
+
+Wraps a function to provide safe execution. It catches any exceptions thrown by the wrapped function and maps them to a specified error definition, ensuring the function always returns a Promise resolving to a `SafeishResult` or `SafeishError`.
+
 
 ## Inspirations
 

@@ -1,13 +1,22 @@
+/**
+ * Represents a successful operation outcome.
+ */
 export type SafeishResult<Data> = {
   ok: true;
   data: Data;
 };
 
+/**
+ * Represents a known error outcome.
+ */
 export type SafeishError<Code extends string, Context> = {
   ok: false;
   error: { code: Code; context: Context; message: string };
 };
 
+/**
+ * Represents the definition or blueprint for a specific error type.
+ */
 export type SafeishErrorDefinition<
   Code extends string,
   Context,
