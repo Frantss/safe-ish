@@ -52,9 +52,19 @@ const errors = {
     message: (context: number) => `Value ${context} is greater than 50`,
   }),
 
+  greater_than_65: safeish_defineError({ // this
+    code: 'greater_than_65', // this
+    message: (context: number) => `Value ${context} is greater than 65`,
+    
+  }),
+
   greater_than_80: safeish_defineError({
     code: 'greater_than_80',
     message: () => 'Value is greater than 80',
+    // you can also specify an effect to be called when the error is created
+    effect: () => { // arguments are the same as in message
+      console.log('effect');
+    },
   }),
 };
 
@@ -69,7 +79,7 @@ const someFunctionThatMightFail = safeish(() => {
   // whenever you get to an error case, return the corresponding error instead of throwing or returning void or undefined
   // note that calling the error builder will add a sentry breadcrumb, this will be useful for debugging
   if (value > 0.5) return errors.greater_than_50(value);
-  if (value > 0.8) return errors.greater_than_80();
+  if (value > 0.8) return errors.greater_than_80(); // creating this error will trigger the effect
 
   // for success cases use safe_result, which will wrap the data in a Safe_Result object
   return safeish_result(value);

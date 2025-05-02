@@ -4,8 +4,15 @@ import type { SafeishErrorDefinition } from '~/src/types';
 export const defineError = <const Code extends string, Context = undefined>({
   code,
   message,
-}: { code: Code; message: (context: Context) => string }) => {
+  effect,
+}: {
+  code: Code;
+  message: (context: Context) => string;
+  effect?: (context: NoInfer<Context>) => void | Promise<void>;
+}) => {
   const builder = (context: Context) => {
+    if (effect) effect(context);
+
     return error(code, context, message(context));
   };
 

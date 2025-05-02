@@ -1,4 +1,4 @@
-import { assertType, expect, it, test } from 'vitest';
+import { assertType, describe, expect, it, test, vi } from 'vitest';
 import { safeish_defineError } from '~/entries/prefixed';
 
 it('should return expected types when message lacks a context argument', () => {
@@ -57,4 +57,48 @@ test('defined error should return expected error with context', () => {
   expect(instance.error.code).toBe('code');
   expect(instance.error.message).toBe('message');
   expect(instance.error.context.message).toBe('message');
+});
+
+describe('effect', () => {
+  it('should call the effect when error is created', () => {
+    const effect = vi.fn();
+
+    const builder = safeish_defineError({
+      code: 'code',
+      message: () => 'message',
+      effect,
+    });
+
+    builder();
+
+    expect(effect).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call the effect each time error is created', () => {
+    const effect = vi.fn();
+
+    const builder = safeish_defineError({
+      code: 'code',
+      message: () => 'message',
+      effect,
+    });
+
+    builder();
+    builder();
+    builder();
+
+    expect(effect).toHaveBeenCalledTimes(3);
+  });
+
+  it('should not call the effect when the error builder is created', () => {
+    const effect = vi.fn();
+
+    const builder = safeish_defineError({
+      code: 'code',
+      message: () => 'message',
+      effect,
+    });
+
+    expect(effect).not.toHaveBeenCalled();
+  });
 });
